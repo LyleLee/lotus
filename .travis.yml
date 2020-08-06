@@ -7,5 +7,8 @@ arch:
 go:
   - "1.14.2"
 
+before_install:
+  - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --verbose --default-toolchain none
+  - source ~/.cargo/env
 script: 
   - RUSTFLAGS="-C target-cpu=native -g" FFI_BUILD_FROM_SOURCE=1 make all

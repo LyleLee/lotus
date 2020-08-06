@@ -4,5 +4,8 @@ arch:
   - amd64
   - arm64
 
+go:
+  - "1.14.2"
+
 script: 
   - RUSTFLAGS="-C target-cpu=native -g" FFI_BUILD_FROM_SOURCE=1 make all

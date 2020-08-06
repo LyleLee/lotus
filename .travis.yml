@@ -1,0 +1,8 @@
+language: rust
+
+arch:
+  - amd64
+  - arm64
+
+script: 
+  - RUSTFLAGS="-C target-cpu=native -g" FFI_BUILD_FROM_SOURCE=1 make all

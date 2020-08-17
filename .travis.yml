@@ -1,0 +1,17 @@
+language: go
+
+arch:
+  - amd64
+  - arm64
+
+go:
+  - "1.14.2"
+
+before_install:
+  - sudo apt update && sudo apt install -y mesa-opencl-icd ocl-icd-opencl-dev gcc git bzr jq pkg-config curl
+  - sudo apt install -y graphviz && sudo apt clean
+  - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --verbose --default-toolchain none
+  - source ~/.cargo/env
+script:
+  - echo "nightly" > extern/filecoin-ffi/rust/rust-toolchain
+  - RUSTFLAGS="-C target-cpu=native -g" FFI_BUILD_FROM_SOURCE=1 make all
